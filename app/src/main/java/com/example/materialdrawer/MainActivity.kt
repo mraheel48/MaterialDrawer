@@ -8,6 +8,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.materialdrawer.databinding.ActivityMainBinding
+import com.google.android.material.shape.MaterialShapeUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,29 +36,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        animationSideDrawer()
-
-    }
-
-    val END_SCALE: Float = 1.0f
-
-    private fun animationSideDrawer() {
-        binding.drawer.addDrawerListener(object : DrawerLayout.DrawerListener {
-            override fun onDrawerSlide(view: View, v: Float) {
-                val diffScaledOffset: Float = v * (1 - END_SCALE)
-                val offsetScale = 1 - diffScaledOffset
-                binding.containter.scaleX = offsetScale
-                binding.containter.scaleY = offsetScale
-                val xOffset = view.width * v
-                val xOffsetDiff: Float = binding.containter.width * diffScaledOffset / 2
-                val xTranslation = xOffset - xOffsetDiff
-                binding.containter.translationX = xTranslation
-            }
-            override fun onDrawerOpened(view: View) {
-            }
-            override fun onDrawerClosed(view: View) {}
-            override fun onDrawerStateChanged(i: Int) {}
-        })
     }
 
     override fun onBackPressed() {
@@ -78,4 +56,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 }
